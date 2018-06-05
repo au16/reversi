@@ -15,7 +15,7 @@
     <!-- Bootstrap CSS -->
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css' integrity='sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB' crossorigin='anonymous'>
 
-    <title>Hello, world!</title>
+    <title>Reversi!</title>
   </head>
   <body>
 	<div class='container-fluid text-center'>
@@ -33,30 +33,23 @@
   	<div class='col-3'>
 			</div>
 		
-			
-			
-			
-			
 	  <div class='row'> <!-- messages -->
-		<div class='col'>
+		<div class='col text-left'>
 			<h3>messages</h3>
-			<div id='messages'></div>
-		</div>
-	  </div>
-		
-	  <div class='row'> <!-- messages -->
-		<div class='col'>
-			<form action='' onSubmit='send_message(); return false;'>
-				<div class='form-group'>
+			<form class='form-inline' onSubmit='send_message(); return false;'>
 					<label for='send_message_holder' class='col-form-label sr-only'>Enter your chat message</label>
-					<input type='text' class='form-control' value='' id='send_message_holder' placeholder='Enter you chat message' autocomplete='off'>
-				</div>
+					<input class='form-control mx-auto w-75' type='text' value='' id='send_message_holder' placeholder='Enter you chat message' autocomplete='off'>
 				<button type='submit' class='btn btn-default btn-primary'>Send</button>
 			</form>
 		</div>
 	  </div>
 		
 	</div>
+		<div class='row'> <!-- messages -->
+		<div class='col'>
+			<div id='messages'></div>
+		</div>
+	  </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -66,6 +59,5 @@
 
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.dev.js' integrity='sha256-9oGOwZ/oTairwbaMRm++W5T0fPMfUcV6R9ibsMbiC1o=' crossorigin='anonymous'></script>
 	<script src='js/main.js'></script>
-	  
 	</body>
 </html>
