@@ -633,7 +633,7 @@ io.sockets.on('connection', function(socket){
 		}
 	
 		var color = payload.color;
-		if (('undefined' === typeof color) || !color || (color !== 'white' && color !== 'black')) {
+		if (('undefined' === typeof color) || !color || (color !== 'sun' && color !== 'moon')) {
 			var error_message = 'play token didn\'t specify a valid color, command aborted.';
 			log(error_message);
 			socket.emit('play_token_response', {
@@ -668,8 +668,8 @@ io.sockets.on('connection', function(socket){
 		/*If the wrong socket is playing the color */
 
 		if (
-			((game.whose_turn === 'white') && (game.player_white.socket != socket.id)) ||
-			((game.whose_turn === 'black') && (game.player_black.socket != socket.id))){
+			((game.whose_turn === 'sun') && (game.player_white.socket != socket.id)) ||
+			((game.whose_turn === 'moon') && (game.player_black.socket != socket.id))){
 			var error_message = 'play_token turn played by wrong player.';
 			log(error_message);
 			socket.emit('play_token_response', {
@@ -687,16 +687,16 @@ io.sockets.on('connection', function(socket){
 		socket.emit('play_token_response',success_data);
 		
 		// Execute the move
-		if (color === 'white') {
+		if (color === 'sun') {
 			game.board[row][column] = 'w';
 			flip_board('w',row,column,game.board);
-			game.whose_turn = 'black';
+			game.whose_turn = 'moon';
 			game.legal_moves = calculate_valid_moves('b',game.board);
 		}
-		else if (color === 'black') {
+		else if (color === 'moon') {
 			game.board[row][column] = 'b';
 			flip_board('b', row, column, game.board);
-			game.whose_turn = 'white';
+			game.whose_turn = 'sun';
 			game.legal_moves = calculate_valid_moves('w', game.board);
 		}
 		
@@ -959,10 +959,10 @@ function send_game_update(socket, game_id, message){
 		// send a game over message
 		var winner = 'tie game';
 		if(black>white){
-			winner = 'black';
+			winner = 'moon';
 		}
 		if (white> black) {
-			winner = 'white';
+			winner = 'sun';
 		}
 		var success_data = {
 			result:'success',
