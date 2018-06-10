@@ -309,10 +309,10 @@ socket.on('game_update',function(payload){
   /* Update my color */
 
   if (socket.id === payload.game.player_white.socket) {
-    my_color = 'sun';
+    my_color = 'white';
   }
   else if (socket.id === payload.game.player_black.socket) {
-    my_color = 'moon';
+    my_color = 'black';
   }
   else {
     // something weird is going on, like three people playing at once
