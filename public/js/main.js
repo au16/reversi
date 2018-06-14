@@ -320,10 +320,22 @@ socket.on('game_update',function(payload){
     window.location.href = 'lobby.html?username=' + username;
     return;
   }
-
-  $('#my_color').html('<h3 id="my_color">I am ' + my_color + '</h3>');
-  $('#my_color').append('<h4>It is '+payload.game.whose_turn+'\'s turn. Elapsed time <span id="elapsed"></span></h4>');
-
+ 
+ var planetName = ' ';
+  if (payload.game.whose_turn === 'black'){
+	  planetName = 'moon';
+  }else{
+	  planetName = 'sun';
+  }  
+	
+  if (my_color === 'black'){
+	  $('#my_color').html('<h3 id="my_color">I am moon</h3>');
+	  $('#my_color').append('<h4>It is ' + planetName + '\'s turn. Elapsed time <span id="elapsed"></span></h4>');
+  }else{
+	  $('#my_color').html('<h3 id="my_color">I am sun</h3>');
+	  $('#my_color').append('<h4>It is ' + planetName + '\'s turn. Elapsed time <span id="elapsed"></span></h4>');
+  }
+	
   clearInterval(interval_timer);
 interval_timer = setInterval(function(last_time){
   return function(){
@@ -448,7 +460,13 @@ socket.on('game_over', function (payload) {
   }
 
   /* Jump to a new page */  
-  $('#game_over').html('<h1>Game Over</h1><h2>'+payload.who_won+' won!</h2>');
+ var planetName = ' ';
+ if (payload.who_won === 'black'){
+	 planetName = 'moon';
+ }else{
+	 planetName = 'sun';
+ }
+  $('#game_over').html('<h1>Game Over</h1><h2>'+planetName+' won!</h2>');
   $('#game_over').append('<a href="lobby.html?username='+username+'" class="btn btn-success btn-lg active" role="button" aria-pressed="true"> Return to the Lobby </a>');
 }  );
 
